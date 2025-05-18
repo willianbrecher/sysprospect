@@ -15,7 +15,6 @@ class LeadViewMapper: IMapper<LeadEntity, LeadViewModel> {
             email = t.email,
             amount = t.amount,
             knowAbout = t.knowAbout,
-            about = t.about,
             createdAt = t.createdAt
         )
     }

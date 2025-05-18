@@ -5,7 +5,8 @@ CREATE TABLE application.leads (
     email varchar(100) not null,
     amount int not null,
     know_about varchar(20) not null,
-    about varchar(250)
     created_at timestamp not null,
     primary key (id)
 );
+
+ALTER TABLE application.leads ADD CONSTRAINT uc_name_phone_email UNIQUE(name, phone,email);

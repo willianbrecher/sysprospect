@@ -11,11 +11,11 @@ import org.jetbrains.annotations.NotNull
 data class UserEntity(
 
     @NotNull
-    val name: String,
+    var name: String,
     @NotNull
     @Column(unique = true)
     val username: String,
-    val password: String,
+    var password: String,
     @NotNull
-    val email: String
+    var email: String
 ): CommonEntity()

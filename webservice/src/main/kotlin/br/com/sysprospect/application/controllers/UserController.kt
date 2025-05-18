@@ -1,25 +1,24 @@
 package br.com.sysprospect.application.controllers
 
-import br.com.sysprospect.application.models.users.UserFormModel
+import br.com.sysprospect.application.models.users.UserFormCreateModel
+import br.com.sysprospect.application.models.users.UserFormUpdateModel
 import br.com.sysprospect.application.models.users.UserViewModel
 import br.com.sysprospect.domain.services.UserService
+import jakarta.transaction.Transactional
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.data.domain.Sort
 import org.springframework.data.web.PageableDefault
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import java.util.UUID
 
 @RestController
-@RequestMapping(name = "/api/users")
+@RequestMapping("/api/users")
+@CrossOrigin(origins = ["*"], allowedHeaders = ["*"]) // Allows all origins and headers
 class UserController(
     private val userService: UserService
 ){
-    @GetMapping
+    @GetMapping("/pageable-list")
     fun list(@RequestParam(required = false) name: String?,
              @PageableDefault(size = 10, sort = ["name"], direction = Sort.Direction.DESC) pageable: Pageable
     ): Page<UserViewModel> {
@@ -31,7 +30,21 @@ class UserController(
         return userService.findById(UUID.fromString(id))
     }
 
-    fun create(@RequestParam form: UserFormModel): UserViewModel {
+    @PostMapping
+    @Transactional
+    fun create(@RequestBody  form: UserFormCreateModel): UserViewModel {
         return userService.create(form)
+    }
+
+    @PutMapping
+    @Transactional
+    fun update(@RequestBody  form: UserFormUpdateModel): UserViewModel {
+        return userService.update(form)
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    fun delete(@PathVariable id: String) {
+        userService.delete(UUID.fromString(id))
     }
 }
