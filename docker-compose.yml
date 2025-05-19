@@ -1,0 +1,30 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: sa_sysprospect
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: sysprospect
+    networks:
+      - sysprospect      
+
+  webservice:
+    build:
+      context: ./webservice
+    ports:
+      - "8089:8080"
+    networks:
+      - sysprospect      
+
+  webapp:
+    build:
+      context: ./webapp  
+    ports:
+      - "8090:80"
+    networks:
+      - sysprospect  
+
+networks:
+  sysprospect:
+    driver: bridge  
