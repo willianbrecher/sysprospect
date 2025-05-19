@@ -33,7 +33,7 @@ const Register: FC = () => {
           name={"knowAbout"}
           formControl={form.formControl}
           placeHolder={"How do you know about us?"}
-          options={form.knowAboutOptions}
+          options={form.knowAboutOptions} 
         />
         <Button label="Send" onClick={form.submit} />
       </div>

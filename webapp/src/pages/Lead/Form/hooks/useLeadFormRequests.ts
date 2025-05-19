@@ -2,9 +2,9 @@ import { useMemo } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import { LeadApi } from "../../../../api/LeadApi";
-import type { ILeadViewModel } from "../../../../types/lead.types";
+import { HowKnowAbout, type ILeadViewModel } from "../../../../types/lead.types";
 import type { IFormProps } from "../../../../types/form.types";
-import type { ILeadForm, ILeadFormSchema } from "../utils/leadForm.types";
+import type { ILeadForm } from "../utils/leadForm.types";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { getLeadSchema } from "../utils/leadForm.schema";
@@ -21,14 +21,14 @@ const useLeadFormRequests = (props: IFormProps) => {
     name: "",
     phone: "",
     email: "",
-    knowAbout: null,
+    knowAbout: HowKnowAbout.OTHER,
     amount: 1,
     createdAt: "",
   };
 
   const methods = useForm({
-    defaultValues,
-    resolver: yupResolver(getLeadSchema()),
+    defaultValues ,
+    resolver: yupResolver(getLeadSchema()) as any,
   });
 
 	const handleSubmit = methods.handleSubmit((form) => {

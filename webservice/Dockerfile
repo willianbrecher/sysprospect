@@ -1,14 +1,14 @@
-# Build stage with Maven and Java
-FROM maven:3.9.5-eclipse-temurin-17 AS builder
+#build
+FROM maven:3.8.7-openjdk-18-slim as builder
 
 WORKDIR /app
 COPY pom.xml .
 COPY src ./src
 
-RUN mvn clean package -DskipTests
+RUN mvn clean package -Pprod -DskipTests 
 
-# Run stage with only JRE
-FROM openjdk:17-jdk-alpine
+#serve
+FROM openjdk:21
 
 WORKDIR /app
 COPY --from=builder /app/target/*.jar app.jar

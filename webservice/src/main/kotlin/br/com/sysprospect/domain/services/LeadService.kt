@@ -35,7 +35,7 @@ class LeadService(
             }
         )
 
-        snsService.publish(objectMapper.writeValueAsString(LeadTopicModel(lead.name,lead.email,lead.amount)))
+        //snsService.publish(objectMapper.writeValueAsString(LeadTopicModel(lead.name,lead.email,lead.amount)))
 
         return leadViewMapper.map(lead)
     }

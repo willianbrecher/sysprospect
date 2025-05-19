@@ -1,10 +1,7 @@
-import type { UseFormReturn } from "react-hook-form";
-
 export interface ControlledDropdownProps {
     name: string;
-    optionLabel: string;
     options: ControlledDropdownOptionItem[]
-    formControl: UseFormReturn;
+    formControl: any;
     placeHolder: string;
     disabled?: boolean;
     hidden?: boolean;

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 
 const useLeadListActions = () => {
-  const [selected, setSelected] = useState([]);
+  const [selected, setSelected] = useState<any>([]);
   const navigate = useNavigate();
 
   const handleDetailAction = (id: string) => {
