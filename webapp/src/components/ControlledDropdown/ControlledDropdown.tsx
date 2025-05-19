@@ -16,6 +16,8 @@ const ControlledDropdown: FC<ControlledDropdownProps> = (
           <>
             <Dropdown
               {...field}
+              hidden={props.hidden}
+              disabled={props.disabled}
               optionLabel="label"
               onChange={(e) => props.formControl.setValue(props.name, e.value)}
               options={props.options}

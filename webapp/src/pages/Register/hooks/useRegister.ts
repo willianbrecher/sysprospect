@@ -6,23 +6,23 @@ import { getRegisterSchema } from "../utils/register.schema";
 import { useMutation } from "react-query";
 import type { IRegisterForm } from "../utils/register.types";
 import type { ControlledDropdownOptionItem } from "../../../components/ControlledDropdown/controlledDropdown.types";
+import type { Toast } from "primereact/toast";
 
 const useRegister = () => {
   const registerApi = useMemo(() => new RegisterApi(), []);
-  const toast = useRef(null);
+  const toast = useRef<Toast>(null);
 
   const formControl = useForm({
     defaultValues: {
       name: "",
       email: "",
       phone: "",
-      knowAbout: "",
     },
     resolver: yupResolver(getRegisterSchema()),
   });
 
   const handleSubmit = formControl.handleSubmit((form) => {
-    submitRegisterMutation.mutate(form);
+    submitRegisterMutation.mutate(form as IRegisterForm);
   });
 
   const submitRegisterMutation = useMutation({
@@ -30,26 +30,24 @@ const useRegister = () => {
       return await registerApi.register(form);
     },
     onSuccess: () => handleSuccess(),
-    onError: (error: unknown) => handleError(error),
+    onError: () => handleError(),
   });
 
   const handleSuccess = () => {
-    toast.current.show({
+    toast.current?.show({
       severity: "success",
       summary: "Registro",
-      detail: "Usuário registrado com sucesso!",
+      detail: "Obrigado pelo seu contato! Alguém de nossa equipe entrará em contato em breve.",
       life: 10000,
     });
     formControl.reset();
   };
 
-  const handleError = (error: unknown) => {
-    toast.current.show({
+  const handleError = () => {
+    toast.current?.show({
       severity: "error",
       summary: "Registro",
-      detail:
-        "Ocorreu um erro ao registrar o usuário! " +
-        error.response.data.message,
+      detail: "Ocorreu um erro ao registrar o usuário!",
       life: 10000,
     });
   };

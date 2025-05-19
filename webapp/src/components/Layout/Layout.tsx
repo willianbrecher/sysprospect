@@ -8,7 +8,7 @@ const Layout: FC = () => {
   const items = [
     {
       label: "Home",
-      command: () => navigate("/Register"),
+      command: () => navigate("/"),
     },
     {
       label: "Leads",

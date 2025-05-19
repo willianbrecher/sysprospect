@@ -25,14 +25,6 @@ const LeadRouter: FC = () => {
               </Suspense>
             }
           />
-          <Route
-            path="/new"
-            element={
-              <Suspense>
-                <LeadForm type="new" />
-              </Suspense>
-            }
-          />
         </Route>
       </Routes>
     </Suspense>

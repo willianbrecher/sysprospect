@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    driverclassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/sysprospect
+    username: sa_sysprospect
+    password: 123456
+  flyway:
+    schemas: application
+  jpa:
+    database-platform: br.com.sysprospect.infrastructure.jpa.CustomPostgreSQLDialect
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true

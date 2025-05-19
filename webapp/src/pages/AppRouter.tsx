@@ -8,8 +8,8 @@ const AppRouter: FC = () => {
     return (
         <Routes>
             <Route element={<Layout />}>
-                <Route path="/Register" element={<Register />} />
-                <Route path="/Leads" element={<LeadRouter />} />
+                <Route path="/" element={<Register />} />
+                <Route path="/Leads/*" element={<LeadRouter />} />
             </Route>
         </Routes>
     );

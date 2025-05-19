@@ -19,10 +19,15 @@ class LeadController(
     private val leadService: LeadService
 ) {
     @GetMapping("/pageable-list")
-    fun list(@RequestParam(required = false) name: String?,
+    fun list(@RequestParam(required = false) filter: String?,
              @PageableDefault(size = 10, sort = ["name"], direction = Sort.Direction.DESC) pageable: Pageable
     ): Page<LeadViewModel> {
-        return leadService.list(name, pageable);
+        return leadService.list(filter, pageable);
+    }
+
+    @GetMapping("/by-email/{email}")
+    fun getByEmail(@PathVariable email: String): LeadViewModel {
+        return leadService.findByEmail(email)
     }
 
     @GetMapping("/{id}")
@@ -30,16 +35,11 @@ class LeadController(
         return leadService.findById(UUID.fromString(id))
     }
 
-    @PostMapping
+    @PutMapping("/{id}")
     @Transactional
-    fun create(@RequestBody  form: LeadFormCreateModel): LeadViewModel {
-        return leadService.create(form)
-    }
-
-    @PutMapping
-    @Transactional
-    fun update(@RequestBody  form: LeadFormUpdateModel): LeadViewModel {
-        return leadService.update(form)
+    fun update(@PathVariable id: String,
+               @RequestBody form: LeadFormUpdateModel): LeadViewModel {
+        return leadService.update(UUID.fromString(id), form)
     }
 
     @DeleteMapping("/{id}")

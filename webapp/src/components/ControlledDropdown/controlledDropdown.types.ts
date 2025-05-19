@@ -6,6 +6,8 @@ export interface ControlledDropdownProps {
     options: ControlledDropdownOptionItem[]
     formControl: UseFormReturn;
     placeHolder: string;
+    disabled?: boolean;
+    hidden?: boolean;
 }
 
 export interface ControlledDropdownOptionItem {

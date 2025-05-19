@@ -16,6 +16,8 @@ const ControlledInputText: FC<ControlledInputTextProps> = (
           <>
             <InputText
               {...field}
+              hidden={props.hidden}
+              disabled={props.disabled}
               keyfilter={props.keyFilter ? props.keyFilter : undefined}
               value={props.formControl.watch(props.name)}
               placeholder={props.placeHolder}

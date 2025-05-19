@@ -5,5 +5,6 @@ export interface ModalProps {
     onClose: () => void;
     submitButtonText: string;
     closeButtonText: string;
+    disableSubmitButton?: boolean;
     isOpen: boolean;
 }

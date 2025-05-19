@@ -7,11 +7,11 @@ const Modal: FC<ModalProps> = (props: ModalProps) => {
   const footerContent = (
     <div>
       <Button
-        label={props.submitButtonText}
-        onClick={props.onSubmit}
+        label={props.closeButtonText}
+        onClick={props.onClose}
         className="p-button-text"
       />
-      <Button label={props.closeButtonText} onClick={props.onClose} />
+      <Button label={props.submitButtonText} onClick={props.onSubmit} disabled={props.disableSubmitButton}/>
     </div>
   );
 
