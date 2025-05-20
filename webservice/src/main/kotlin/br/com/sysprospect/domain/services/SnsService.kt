@@ -13,11 +13,13 @@ class SnsService(
 ) {
 
     fun publish(message: String){
-        val request = PublishRequest.builder()
-            .topicArn(awsProperties.snsTopic)
-            .message(message)
-            .build()
+        if (awsProperties.enabled) {
+            val request = PublishRequest.builder()
+                .topicArn(awsProperties.snsTopic)
+                .message(message)
+                .build()
 
-        snsClient.publish(request)
+            snsClient.publish(request)
+        }
     }
 }

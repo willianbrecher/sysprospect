@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration
 @Configuration
 @ConfigurationProperties(prefix = "aws")
 class AwsProperties {
+    var enabled: Boolean = false
     lateinit var accessKey: String
     lateinit var secretKey: String
     lateinit var region: String

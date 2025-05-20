@@ -32,6 +32,7 @@ const useLeadFormRequests = (props: IFormProps) => {
   });
 
 	const handleSubmit = methods.handleSubmit((form) => {
+    console.info(form);
 			if (type === "edit") {
 				updateLeadMutation.mutate(form as ILeadForm);
 			}
@@ -49,14 +50,6 @@ const useLeadFormRequests = (props: IFormProps) => {
     refetchOnWindowFocus: false,
   });
 
-  const createLeadMutation = useMutation({
-    mutationFn: async (form: ILeadForm) => {
-      return await leadApi.create<ILeadForm, ILeadViewModel>(form);
-    },
-    onSuccess: () => handleMutationSuccess("createdSuccessfully"),
-    onError: (err) => handleMutationError(err as string),
-  });
-
   const updateLeadMutation = useMutation({
     mutationFn: async (form: ILeadForm) => {
       return await leadApi.update(form, id);
@@ -67,7 +60,6 @@ const useLeadFormRequests = (props: IFormProps) => {
 
   const isLoading =
     leadQuery.isLoading ||
-    createLeadMutation.isLoading ||
     updateLeadMutation.isLoading;
 
   const handleQuerySuccess = (data: ILeadViewModel) => {
@@ -82,26 +74,12 @@ const useLeadFormRequests = (props: IFormProps) => {
     queryClient.invalidateQueries(leadApi.pageableListQueryKey).then();
 
     handleClose();
-
-    if (typeof message === "string") {
-      //Message.success(message);
-    }
-
-    if (typeof message === "object") {
-      //Message.success(translate(message));
-    }
+    //Message.success(message);
   };
 
   const handleMutationError = (message: string) => {
     handleClose();
-
-    if (typeof message === "string") {
-      //Message.error(message);
-    }
-
-    if (typeof message === "object") {
-      //Message.error(translate(message));
-    }
+    //Message.error(translate(message));
   };
 
   const knowAboutOptions: ControlledDropdownOptionItem[] = [

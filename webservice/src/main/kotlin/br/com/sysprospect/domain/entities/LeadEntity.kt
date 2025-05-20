@@ -18,5 +18,10 @@ data class LeadEntity(
     @NotNull
     var amount: Int,
     @NotNull
-    val knowAbout: HowKnowAbout,
-): CommonEntity()
+    var knowAbout: HowKnowAbout,
+): CommonEntity() {
+
+    fun incrementAmount() {
+        amount =+ 1
+    }
+}

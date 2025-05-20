@@ -27,7 +27,7 @@ class LeadService(
 
         leadRepository.findByNameAndPhoneAndEmail(lead.name,lead.phone,lead.email).ifPresentOrElse(
             { value ->
-                value.amount += 1
+                value.incrementAmount()
                 leadRepository.save(value)
             },
             {
@@ -35,7 +35,7 @@ class LeadService(
             }
         )
 
-        //snsService.publish(objectMapper.writeValueAsString(LeadTopicModel(lead.name,lead.email,lead.amount)))
+        snsService.publish(objectMapper.writeValueAsString(LeadTopicModel(lead.name,lead.email,lead.amount)))
 
         return leadViewMapper.map(lead)
     }
@@ -45,8 +45,9 @@ class LeadService(
             .orElseThrow{NotFoundException("Lead not found!")}
 
         lead.name = form.name
-        lead.email = form.email
         lead.phone = form.phone
+        lead.email = form.email
+        lead.knowAbout = form.knowAbout
 
         leadRepository.save(lead)
 

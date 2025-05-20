@@ -10,6 +10,7 @@ spring:
     database-platform: br.com.sysprospect.infrastructure.jpa.CustomPostgreSQLDialect
 
 aws:
+  enabled: false
   access-key: test
   secret-key: test
   region: us-east-1
