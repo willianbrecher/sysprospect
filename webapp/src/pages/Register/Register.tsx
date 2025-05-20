@@ -11,7 +11,7 @@ const Register: FC = () => {
 
   return (
     <Card title="Contato">
-      <Toast ref={toast} />
+      <Toast ref={toast} data-test="toast-register-message"/>
       <div className="p-fluid">
         <ControlledInputText
           name={"name"}
@@ -35,7 +35,7 @@ const Register: FC = () => {
           placeHolder={"How do you know about us?"}
           options={form.knowAboutOptions} 
         />
-        <Button label="Send" onClick={form.submit} />
+        <Button label="Send" onClick={form.submit} data-test="button-submit-register"/>
       </div>
     </Card>
   );

@@ -15,6 +15,7 @@ const ControlledInputText: FC<ControlledInputTextProps> = (
         return (
           <>
             <InputText
+              data-test={`input-text-${props.name}`}
               {...field}
               hidden={props.hidden}
               disabled={props.disabled}

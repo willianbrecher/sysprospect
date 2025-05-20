@@ -19,9 +19,4 @@ data class LeadEntity(
     var amount: Int,
     @NotNull
     var knowAbout: HowKnowAbout,
-): CommonEntity() {
-
-    fun incrementAmount() {
-        amount =+ 1
-    }
-}
+): CommonEntity()

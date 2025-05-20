@@ -27,7 +27,7 @@ class LeadService(
 
         leadRepository.findByNameAndPhoneAndEmail(lead.name,lead.phone,lead.email).ifPresentOrElse(
             { value ->
-                value.incrementAmount()
+                value.amount += 1
                 leadRepository.save(value)
             },
             {

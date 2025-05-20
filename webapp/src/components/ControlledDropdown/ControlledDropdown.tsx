@@ -12,10 +12,13 @@ const ControlledDropdown: FC<ControlledDropdownProps> = (
       name={"knowAbout"}
       control={props.formControl.control}
       render={({ field, fieldState }) => {
+        console.log(fieldState.error);
+
         return (
           <>
             <Dropdown
               {...field}
+              data-test={`dropdown-${props.name}`}
               hidden={props.hidden}
               disabled={props.disabled}
               optionLabel="label"

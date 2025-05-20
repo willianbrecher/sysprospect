@@ -36,8 +36,9 @@ const useRegister = () => {
   const handleSuccess = () => {
     toast.current?.show({
       severity: "success",
-      summary: "Registro",
-      detail: "Obrigado pelo seu contato! Alguém de nossa equipe entrará em contato em breve.",
+      summary: "Register",
+      detail:
+        "Thank you for contacting us! Someone from our team will contact you shortly.",
       life: 10000,
     });
     formControl.reset();
@@ -46,17 +47,17 @@ const useRegister = () => {
   const handleError = () => {
     toast.current?.show({
       severity: "error",
-      summary: "Registro",
-      detail: "Ocorreu um erro ao registrar o usuário!",
+      summary: "Register",
+      detail: "An error occurred while registering!",
       life: 10000,
     });
   };
 
   const knowAboutOptions: ControlledDropdownOptionItem[] = [
     { label: "Internet", value: "INTERNET" },
-    { label: "Evento", value: "EVENT" },
-    { label: "Recomendado", value: "REFERRED" },
-    { label: "Outro", value: "OTHER" },
+    { label: "Event", value: "EVENT" },
+    { label: "Referred", value: "REFERRED" },
+    { label: "Other", value: "OTHER" },
   ];
 
   return {
@@ -65,7 +66,7 @@ const useRegister = () => {
       submit: handleSubmit,
       knowAboutOptions,
     },
-    toast
+    toast,
   };
 };
 
