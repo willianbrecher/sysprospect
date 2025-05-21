@@ -14,7 +14,6 @@ import java.util.*
 
 @RestController
 @RequestMapping("/api/leads")
-@CrossOrigin(origins = ["*"], allowedHeaders = ["*"]) // Allows all origins and headers
 class LeadController(
     private val leadService: LeadService
 ) {
@@ -40,11 +39,5 @@ class LeadController(
     fun update(@PathVariable id: String,
                @RequestBody form: LeadFormUpdateModel): LeadViewModel {
         return leadService.update(UUID.fromString(id), form)
-    }
-
-    @DeleteMapping("/{id}")
-    @Transactional
-    fun delete(@PathVariable id: String) {
-        leadService.delete(UUID.fromString(id))
     }
 }

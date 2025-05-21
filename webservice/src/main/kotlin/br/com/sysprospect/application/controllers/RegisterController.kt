@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("api/register")
-@CrossOrigin(origins = ["*"], allowedHeaders = ["*"]) // Allows all origins and headers
 class RegisterController(private val leadService: LeadService) {
 
     @PostMapping

@@ -8,11 +8,10 @@ spring:
     schemas: application
   jpa:
     database-platform: br.com.sysprospect.infrastructure.jpa.CustomPostgreSQLDialect
-
 aws:
-  enabled: false
+  enabled: true
   access-key: test
   secret-key: test
   region: us-east-1
-  endPoint: http://localhost:4566 #empty for aws
-  sns-topic: arn:aws:sns:us-east-1:000000000000:sysprospect    
+  endPoint: http://localstack:4566 #empty for aws
+  sns-topic: arn:aws:sns:us-east-1:000000000000:sysprospect-topic

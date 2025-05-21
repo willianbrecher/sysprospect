@@ -11,11 +11,22 @@ services:
     networks:
       - sysprospect
 
+  localstack:
+    build:
+      context: ./localstack
+    environment:
+      - SERVICES=sns,sqs    
+      - CORS_ALLOW_ORIGIN=*            
+    ports:
+      - "4566:4566"     
+    networks:
+      - sysprospect        
+
   webservice:
     build:
       context: ./webservice
     ports:
-      - "8089:8080"
+      - "8080:8080"
     networks:
       - sysprospect
 
@@ -25,7 +36,7 @@ services:
     ports:
       - "8090:80"
     networks:
-      - sysprospect
+      - sysprospect            
 
 networks:
   sysprospect:

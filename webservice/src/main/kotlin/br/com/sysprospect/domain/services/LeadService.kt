@@ -25,17 +25,16 @@ class LeadService(
     fun create(form: LeadFormCreateModel): LeadViewModel{
         val lead = leadFormMapper.map(form)
 
-        leadRepository.findByNameAndPhoneAndEmail(lead.name,lead.phone,lead.email).ifPresentOrElse(
-            { value ->
+        val savedLead = leadRepository.findByNameAndPhoneAndEmail(lead.name,lead.phone,lead.email)
+            .map { value ->
                 value.amount += 1
                 leadRepository.save(value)
-            },
-            {
+            }
+            .orElseGet{
                 leadRepository.save(lead)
             }
-        )
 
-        snsService.publish(objectMapper.writeValueAsString(LeadTopicModel(lead.name,lead.email,lead.amount)))
+        snsService.publish(objectMapper.writeValueAsString(LeadTopicModel(savedLead.name,savedLead.email,savedLead.amount)))
 
         return leadViewMapper.map(lead)
     }
@@ -52,12 +51,6 @@ class LeadService(
         leadRepository.save(lead)
 
         return leadViewMapper.map(lead)
-    }
-
-    fun delete(id: UUID){
-        val lead = leadRepository.findById(id)
-            .orElseThrow{NotFoundException("Lead not found!")}
-        leadRepository.delete(lead)
     }
 
     fun findById(id: UUID): LeadViewModel{

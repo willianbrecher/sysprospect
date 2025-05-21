@@ -31,7 +31,7 @@ const LeadList: FC = () => {
   };
 
   return (
-    <div className="card">
+    <div>
       <Menubar model={actions} end={header}/>
       <DataTable
         //header={header}
@@ -47,7 +47,7 @@ const LeadList: FC = () => {
         selection={selection.selected}
         onSelectionChange={selection.setSelected}
       >
-        <Column selectionMode="multiple" />
+        <Column selectionMode="single" />
         <Column
           field="name"
           header="Name"

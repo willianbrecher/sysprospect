@@ -9,14 +9,23 @@ const Modal: FC<ModalProps> = (props: ModalProps) => {
       <Button
         label={props.closeButtonText}
         onClick={props.onClose}
-        className="p-button-text"
+        severity="secondary"
       />
-      <Button label={props.submitButtonText} onClick={props.onSubmit} disabled={props.disableSubmitButton}/>
+      <Button
+        label={props.submitButtonText}
+        onClick={props.onSubmit}
+        disabled={props.disableSubmitButton}
+        severity="success"
+      />
     </div>
   );
 
   return (
     <Dialog
+      style={{
+        display: "block",
+        minWidth: "30vw",
+      }}
       onHide={props.onClose}
       visible={props.isOpen}
       header={props.title}

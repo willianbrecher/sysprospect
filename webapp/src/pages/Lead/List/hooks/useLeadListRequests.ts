@@ -39,7 +39,6 @@ const useLeadListRequests = () => {
       keepPreviousData: true,
       refetchOnWindowFocus: false,
       onSuccess: (response) => {
-        console.log(response);
         setPageableResult(response.data.pageable);
         setPageSize(response.data.size);
         setTotalElements(response.data.totalElements);

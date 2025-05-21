@@ -2,7 +2,6 @@ import type { MenuItem } from "primereact/menuitem";
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
 const useLeadListActions = () => {
   const [selected, setSelected] = useState<any>([]);
   const navigate = useNavigate();
@@ -17,26 +16,18 @@ const useLeadListActions = () => {
 
   const listActions = useMemo(() => {
     const actions: MenuItem[] = [];
-    console.log(selected);
-    if (selected.value?.length === 1) {
+
+    if (selected.value) {
       actions.push({
         label: "View",
         icon: "pi pi-folder-open",
-        command: () => handleDetailAction(selected.value[0].id),
+        command: () => handleDetailAction(selected.value.id),
       } as MenuItem);
 
       actions.push({
         label: "Edit",
         icon: "pi pi-file-edit",
-        command: () => handleEditAction(selected.value[0].id),
-      } as MenuItem);
-    }
-
-    if (selected.value?.length >= 1) {
-     actions.push({
-        label: "Remove",
-        icon: "pi pi-trash",
-        //command: () => handleRemoveAction(selected.value[0].id),
+        command: () => handleEditAction(selected.value.id),
       } as MenuItem);
     }
 

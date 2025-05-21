@@ -1,24 +1,10 @@
 import type { FC } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
-import { Menubar } from "primereact/menubar";
+import { Outlet } from "react-router-dom";
 
 const Layout: FC = () => {
-  const navigate = useNavigate();
-
-  const items = [
-    {
-      label: "Home",
-      command: () => navigate("/"),
-    },
-    {
-      label: "Leads",
-      command: () => navigate("/Leads"),
-    },
-  ];
 
   return (
     <>
-      <Menubar model={items} />
       <div>
         <Outlet />
       </div>

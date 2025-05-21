@@ -6,9 +6,10 @@
     "types": ["cypress"],
     "lib": ["dom", "esnext"],
     "strict": true,
-    "baseUrl": "."
+    "baseUrl": ".",
+    "declaration": true
   },
-  "include": ["src", "cypress"],
+  //"include": ["src", "cypress"],
   "files": [],
   "references": [
     { "path": "./tsconfig.app.json" },
