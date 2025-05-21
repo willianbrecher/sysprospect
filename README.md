@@ -33,5 +33,8 @@
   - Docker
     - A execução via docker-compose esta configurada no projeto, basta ter o docker instalado na máquina e executar o comando: ```docker-compose up```
     - A execução via docker já vai subir o backend, frontent e o localstack
-    - Para acessar a a aplicação basta acessa ```http://localhost:8090```
     ![image](https://github.com/user-attachments/assets/26a5fe86-6da5-4cc5-9f1f-0c63cb80ea9d)
+    - Para acessar a a aplicação basta acessa ```http://localhost:8090```
+    ![image](https://github.com/user-attachments/assets/97c9fb61-ffbe-473e-b85d-71b8fc63ec64)
+
+    
