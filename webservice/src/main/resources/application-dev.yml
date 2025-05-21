@@ -4,6 +4,8 @@ spring:
     url: jdbc:postgresql://localhost:5432/sysprospect
     username: sa_sysprospect
     password: 123456
+    hikari:
+      connection-timeout: 60000  
   flyway:
     schemas: application
   jpa:

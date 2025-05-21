@@ -7,7 +7,7 @@ services:
       POSTGRES_PASSWORD: 123456
       POSTGRES_DB: sysprospect
     ports:
-      - "5432:5432"
+      - "5432:5432"    
     networks:
       - sysprospect
 
@@ -27,6 +27,9 @@ services:
       context: ./webservice
     ports:
       - "8080:8080"
+    depends_on:
+      - db
+      - localstack
     networks:
       - sysprospect
 
@@ -34,7 +37,7 @@ services:
     build:
       context: ./webapp
     ports:
-      - "8090:80"
+      - "8090:80"      
     networks:
       - sysprospect            
 
